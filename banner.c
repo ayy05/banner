@@ -12,10 +12,10 @@ long dir[] = {0x861FE148C, 0x7E185F85F, 0x7A104185E, 0x7E186185F, 0xFC105F07F, 0
               0x7A181E05E, 0x20820823E, 0x7A1861861, 0x312861861, 0x873B61861, 0x85230C4A1, 
               0x104104291, 0xFC210843F};
 
-void print_string(char *word, char ch);
+void print_string(char *word);
 
 int main(int argc, char *argv[]) {
-   if (argc == 3) {
+   if (argc == 2) {
        int i;
        char *word = argv[1];
        for(i = 0; word[i] != '\0'; i++) {
@@ -27,7 +27,7 @@ int main(int argc, char *argv[]) {
            }
        }
 
-       print_string(word, *argv[2]);
+       print_string(word);
 
        return 0;
    }
@@ -36,11 +36,10 @@ int main(int argc, char *argv[]) {
    return 1;
 }
 
-void print_string(char *word, char ch) {
+void print_string(char *word) {
     int i, j, length, rows, pos, offset;
+    char ch;
 
-    printf("%s, %c\n", word, ch);
-    
     length = strlen(word);
     rows = SIZE;
     offset = 0;
