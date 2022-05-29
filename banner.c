@@ -19,7 +19,7 @@ int main(int argc, char *argv[]) {
        int i;
        char *word = argv[1];
        for(i = 0; word[i] != '\0'; i++) {
-           if ((word[i] >= 'A' && word[i] <= 'Z') ||(word[i] >= 'a' && word[i] <= 'z')) {
+           if ((word[i] >= 'A' && word[i] <= 'Z') || (word[i] >= 'a' && word[i] <= 'z') || word[i] == 32) {
                word[i]= toupper(word[i]);
            } else {
                printf("Enter a valid character from a-z or A-Z.\n");
@@ -47,10 +47,11 @@ void print_string(char *word, char ch) {
 
     while (rows--) {
         for (i = 0; i < length; i++) {
-            pos = word[i] - (int) 'A';
+            pos = word[i] - 'A';
+            ch = word[i];
 
             for (j = 0; j < SIZE; j++) {
-                if (dir[pos] & (1 << (j + offset))) {
+                if (dir[pos] & ((long) 1 << (j + offset))) {
                     printf("%c", ch);
                 } else {
                     printf(" ");
