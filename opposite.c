@@ -40,6 +40,7 @@ int main(int argc, char *argv[]) {
         /* Calls the function to print the letters in the word. */
         print_string(word);
 
+
         return 0;
     }
 
@@ -49,16 +50,17 @@ int main(int argc, char *argv[]) {
 
 void print_string(char *word) {
     int i, j, length, rows, pos, offset;
-    char ch = '@';
+    char* ch = "\u2588";
 
     length = strlen(word);
     rows = SIZE;
+    offset = 0;
     
     for (i = 0; i < (SIZE + 2) * length + 2; i++)
-        printf("%c", ch);
+        printf("%s", ch);
     printf("\n");
     for (i = 0; i < (SIZE + 2) * length + 2; i++)
-        printf("%c", ch);
+        printf("%s", ch);
 
     printf("\n");
 
@@ -69,18 +71,18 @@ void print_string(char *word) {
             pos = word[i] - 'A';
 
             if(i == 0)
-                printf("%c%c", ch, ch);
+                printf("%s%s", ch, ch);
             
             /* Prints the letter's row. */
             for (j = 0; j < SIZE; j++) {
-                if (dir[pos] & ((long)1 << (j + offset))) {
+                if (pos >= 0 && pos <= 25 && (dir[pos] & ((long)1 << (j + offset)))) {
                     printf(" ");
                 } else {
-                    printf("%c", ch);
+                    printf("%s", ch);
                 }
             }
 
-            printf("%c%c", ch, ch);
+            printf("%s%s", ch, ch);
         }
 
         /* Increases the offset by SIZE to move on to the next row in the binary representation. */
@@ -89,10 +91,10 @@ void print_string(char *word) {
     }
     
     for (i = 0; i < (SIZE + 2) * length + 2; i++)
-        printf("%c", ch);
+        printf("%s", ch);
     printf("\n");
     for (i = 0; i < (SIZE + 2) * length + 2; i++)
-        printf("%c", ch);
+        printf("%s", ch);
 
     printf("\n");
 }

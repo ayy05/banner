@@ -64,7 +64,7 @@ void print_string(char *word) {
 
             /* Prints the letter's row. */
             for (j = 0; j < SIZE; j++) {
-                if (dir[pos] & ((long)1 << (j + offset))) {
+                if (pos >= 0 && pos <= 25 && (dir[pos] & ((long)1 << (j + offset)))) {
                     printf("%c", ch);
                 } else {
                     printf(" ");
