@@ -49,33 +49,50 @@ int main(int argc, char *argv[]) {
 
 void print_string(char *word) {
     int i, j, length, rows, pos, offset;
-    char ch;
+    char ch = '@';
 
     length = strlen(word);
     rows = SIZE;
-    offset = 0;
+    
+    for (i = 0; i < (SIZE + 2) * length + 2; i++)
+        printf("%c", ch);
+    printf("\n");
+    for (i = 0; i < (SIZE + 2) * length + 2; i++)
+        printf("%c", ch);
+
+    printf("\n");
 
     /* Iterates through the rows of the to-be-printed images. */
     while (rows--) {
         /* Iterates through the letters of the word given to print. */
         for (i = 0; i < length; i++) {
             pos = word[i] - 'A';
-            ch = word[i];
 
+            if(i == 0)
+                printf("%c%c", ch, ch);
+            
             /* Prints the letter's row. */
             for (j = 0; j < SIZE; j++) {
                 if (dir[pos] & ((long)1 << (j + offset))) {
-                    printf("%c", ch);
-                } else {
                     printf(" ");
+                } else {
+                    printf("%c", ch);
                 }
             }
 
-            printf("  ");
+            printf("%c%c", ch, ch);
         }
 
         /* Increases the offset by SIZE to move on to the next row in the binary representation. */
         offset += SIZE;
         printf("\n");
     }
+    
+    for (i = 0; i < (SIZE + 2) * length + 2; i++)
+        printf("%c", ch);
+    printf("\n");
+    for (i = 0; i < (SIZE + 2) * length + 2; i++)
+        printf("%c", ch);
+
+    printf("\n");
 }

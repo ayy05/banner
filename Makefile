@@ -1,5 +1,10 @@
 CC = gcc
-CFLAGS = -ansi -pedantic-errors -Wall -fstack-protector-all -Werror
+
+all: banner.x opposite.x
 
 banner.x: banner.c
-	$(CC) $(CFLAGS) -g banner.c -o banner.x
+	$(CC) -g banner.c -o banner.x
+
+opposite.x: opposite.c
+	$(CC) -g opposite.c -o opposite.x
+
